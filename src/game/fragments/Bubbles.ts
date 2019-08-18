@@ -46,7 +46,7 @@ class Bubbles extends GameFragmentClass {
         helpers.countColor(this.config, config, bubbleElement);
     }
 
-    public doTick(bubble: GameBubble) {
+    public onTick(bubble: GameBubble) {
         const {
             node: element,
             config: setup,
@@ -83,6 +83,18 @@ class Bubbles extends GameFragmentClass {
 
         bubble.config.active = false;
         this.bubblesDeleted += 1;
+    }
+
+    public updateLastContact(bubbleId: number) {
+        const bubble = this.bubbles[bubbleId];
+
+        bubble.config.lastContact = 0;
+    }
+
+    public addHealth(bubbleId: number) {
+        const bubble = this.bubbles[bubbleId];
+
+        bubble.config.health += this.connector.Issue.communicateWithCustomer(bubble);
     }
 }
 

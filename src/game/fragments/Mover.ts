@@ -25,13 +25,13 @@ class Mover extends GameFragmentClass {
         Object.keys((this.connector.Bubbles as any).bubbles).forEach((bubbleId) => {
             if (move) {
                 // @ts-ignore
-                this.connector.Bubbles.doTick((this.connector.Bubbles as any).bubbles[bubbleId]);
+                this.connector.Bubbles.onTick(this.connector.Bubbles.bubbles[bubbleId]);
             }
-            this.setUpPos((this.connector.Bubbles as any).bubbles[bubbleId], false)
+            this.setUpPos(this.connector.Bubbles.bubbles[bubbleId])
         });
     }
 
-    private setUpPos(bubble: any, move = true) {
+    private setUpPos(bubble: any) {
         const {
             node: element,
             config: setup

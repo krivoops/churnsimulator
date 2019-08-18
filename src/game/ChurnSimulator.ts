@@ -21,10 +21,6 @@ class ChurnSimulator {
         this.installParts(gameFragments);
         // @ts-ignore
         this.fragments.Bubbles.init();
-        // @ts-ignore
-        this.fragments.Score.init();
-        // @ts-ignore
-        this.fragments.Actions.init();
     }
 
     public setupView () {

@@ -9,10 +9,6 @@ class Score extends GameFragmentClass {
         super(data);
     }
 
-    public init() {
-        (this.connector.Events as any).createEvent('gameOver')
-    }
-
     public checkGameOver() {
         const isOver = (this.connector.Mover as any).ticksDone >= this.config.game.ticksToEnd
             || (this.connector.Bubbles as any).bubblesDeleted === this.config.bubbles.count;

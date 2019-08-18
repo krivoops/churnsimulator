@@ -109,7 +109,7 @@
               // @ts-ignore
               this.messages.unshift(e.detail)
           });
-          document.addEventListener('CSG.CD', () => {
+          document.addEventListener('CSG.CD_altClick', () => {
               this.message = 'This action is under CD';
               setTimeout(() => {
                   this.message = '';

@@ -1,18 +1,31 @@
 import GameFragmentClass from './common'
-import {GameBubble, GameBubbleActionsTypes, GameFragment} from '@/game';
+import {GameBubble, GameBubbleActionsCoolDownTypes, GameBubbleActionsTypes, GameFragment} from '@/game';
+
+import * as bubbleHelpers from './helpers/bubble';
 
 class Actions extends GameFragmentClass {
     public actionsCounter = {
         click: 0
     };
 
+    public coolDownStore = {
+        click: 0,
+        altClick: 0,
+    };
+
     public actionsMap = {
         click: (id: number) => {
             return (e: any) => {
                 if (!e.altKey) {
-                    this.updateLastContact(id);
+                    if (this.checkCoolDown('click')) {
+                        this.putCoolDown('click', 0);
+                        this.connector.Bubbles.updateLastContact(id)
+                    }
                 } else {
-                    this.addBubbleHealthAction(id)
+                    if (this.checkCoolDown('altClick')) {
+                        this.putCoolDown('altClick', this.config.game.clickCD);
+                        this.connector.Bubbles.addHealth(id);
+                    }
                 }
             }
         }
@@ -24,10 +37,6 @@ class Actions extends GameFragmentClass {
         super(data);
     }
 
-    public init() {
-        (this.connector.Events as any).createEvent('CD')
-    }
-
     public subscribe(bubble: GameBubble, action: GameBubbleActionsTypes) {
         bubble.node.addEventListener(action, this.initAction(action, bubble.id))
     }
@@ -37,31 +46,23 @@ class Actions extends GameFragmentClass {
         return this.actionsMap[action](bubbleId)
     }
 
-    public checkCD(name: string) {
+    public putCoolDown(name: GameBubbleActionsCoolDownTypes, coolDown: number) {
+        this.coolDownStore[name] = new Date().getTime() + coolDown;
+    };
+
+    public checkCoolDown(name: string) {
         // @ts-ignore
-        const time = this[`${name}CD`];
+        const time = this.coolDownStore[name];
         const currentTime = new Date().getTime();
 
-        if ((currentTime - time > this.config.game.clickCD) || time === 0) {
-            // @ts-ignore
-            this[`${name}CD`] = 0;
+        if (currentTime - time > 0) {
             return true
         }
+
+        this.connector.Events.emitEvent(`CD_${name}`, {
+            timeLeft: time - currentTime
+        });
         return false
-    }
-
-    private updateLastContact(id: number) {
-        (this.connector.Bubbles as any).bubbles[id].config.lastContact = 0
-    }
-
-    private addBubbleHealthAction(id: number) {
-        if (this.checkCD('addBubbleHealth')) {
-            // @ts-ignore
-            this.connector.Bubbles.bubbles[id].config.health += this.connector.Issue.addBubbleHealth((this.connector.Bubbles as any).bubbles[id]);
-            this.addBubbleHealthCD = new Date().getTime();
-        } else {
-            (this.connector.Events as any).emitEvent('CD')
-        }
     }
 }
 

@@ -1,5 +1,5 @@
 import {
-    Bubbles, Mover, Score, Actions, BubbleIssue, Events,
+    Bubbles, Mover, Score, Actions, Issue, Events,
 } from './fragments'
 
 interface RandomizerConfig {
@@ -37,7 +37,7 @@ interface GameFragments {
     Score: Score,
     Events: Events,
     Actions: Actions,
-    Issue: BubbleIssue,
+    Issue: Issue,
 }
 
 interface GameFragment {
@@ -68,3 +68,4 @@ interface GameBubble {
 }
 
 type GameBubbleActionsTypes = 'click'
+type GameBubbleActionsCoolDownTypes = 'click' | 'altClick'

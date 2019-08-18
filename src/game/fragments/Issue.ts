@@ -47,7 +47,7 @@ class Issues extends GameFragmentClass {
         return issueValue
     }
 
-    public addBubbleHealth(bubble: GameBubble) {
+    public communicateWithCustomer(bubble: GameBubble) {
         const added = addHealth[randomIntFromInterval(0,4)];
 
         (this.connector.Events as any).emitEvent('message', {
@@ -56,7 +56,7 @@ class Issues extends GameFragmentClass {
             message: added[0],
         });
 
-        return added[1];
+        return +added[1];
     }
 }
 
