@@ -12,6 +12,7 @@ interface GameConfig {
             paying: [number, number],
             health: [number, number],
             lastContact: [number, number],
+            renewal: [number, number],
         }
     }
 }

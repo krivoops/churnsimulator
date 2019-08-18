@@ -12,6 +12,7 @@ const config: GameConfig = {
             paying: [5, 20],
             health: [3, 9],
             lastContact: [10, 80],
+            renewal: [20, 340],
         }
     }
 };

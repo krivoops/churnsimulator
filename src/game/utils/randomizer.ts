@@ -49,6 +49,7 @@ const getRandomBubblesPos = (config: GameConfig) => {
         paying: randomIntFromInterval(randomizer.paying[0], randomizer.paying[1]),
         health: randomIntFromInterval(randomizer.health[0], randomizer.health[1], false),
         lastContact: randomIntFromInterval(randomizer.lastContact[0], randomizer.lastContact[1]),
+        renewal: randomIntFromInterval(randomizer.renewal[0], randomizer.renewal[1]),
         name: createName()
     }
 };
