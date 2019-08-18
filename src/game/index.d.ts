@@ -4,8 +4,10 @@ interface GameConfig {
     width: number,
     height: number,
     game: {
-        renewal: 360,
-        lastContact: 90,
+        renewal: number,
+        lastContact: number,
+        ticksPerSecond: number,
+        ticksToEnd: number,
     }
     bubbles: {
         count: number,
@@ -46,4 +48,5 @@ interface GameBubbleConfig {
 interface GameBubble {
     node: HTMLElement,
     config: GameBubbleConfig,
+    id: number,
 }

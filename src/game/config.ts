@@ -6,6 +6,8 @@ const config: GameConfig = {
     game: {
         renewal: 360,
         lastContact: 90,
+        ticksPerSecond: 6,
+        ticksToEnd: 720,
     },
     bubbles: {
         count: 10, // bubbles count

@@ -21,5 +21,6 @@ export default class Canvas extends Vue {
 <style lang="scss">
   .bubble {
     text-align: center;
+    transition: all .5s;
   }
 </style>

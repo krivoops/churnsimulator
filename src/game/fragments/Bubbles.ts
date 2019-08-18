@@ -1,5 +1,5 @@
 import GameFragmentClass from './common'
-import { GameBubbles, GameFragment} from '@/game';
+import {GameBubble, GameBubbles, GameFragment} from '@/game';
 import { getRandomBubblesPos } from '@/game/utils/randomizer';
 
 class Bubbles extends GameFragmentClass {
@@ -28,6 +28,7 @@ class Bubbles extends GameFragmentClass {
         this.bubbles[id] = {
             node: bubble,
             config: setupConfig,
+            id,
         };
 
         this.playground.appendChild(bubble)
@@ -52,6 +53,27 @@ class Bubbles extends GameFragmentClass {
         const backgroundColor = `rgb(${redCoef},${greenCoef},0)`;
         // @ts-ignore
         element.style['background-color'] = backgroundColor;
+    }
+
+    public doTick(bubble: GameBubble) {
+        const {
+            node: element,
+            config: setup,
+            id,
+        } = bubble;
+
+        this.bubbles[id].config.renewal -= 1;
+        this.bubbles[id].config.lastContact += 1;
+
+        if (this.bubbles[id].config.renewal <= 0) {
+            this.bubbles[id].config.renewal = 360
+        }
+
+        if (this.bubbles[id].config.lastContact >= 90) {
+            this.bubbles[id].config.lastContact = 0
+        }
+
+        this.doStylesForBubble(this.bubbles[id].config, element)
     }
 }
 

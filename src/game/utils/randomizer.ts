@@ -2,7 +2,7 @@ import { GameConfig } from '@/game';
 
 const randomIntFromInterval = (min: number, max: number, floor = true) => {
     const random = Math.random() * (max - min + 1) + min;
-    return floor ? Math.floor(random) : Math.floor(random * 10) / 10;
+    return floor ? Math.floor(random) : Math.floor(random * 100) / 100;
 };
 
 const randomCompanies = [
