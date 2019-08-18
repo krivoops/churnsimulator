@@ -58,9 +58,9 @@
 
   import Firebase from 'firebase'
   let config = {
-      apiKey: "AIzaSyBre1jfpBSeaCmcXrw7NfDU-nQJjpUajX8",
-      authDomain: "project-1004742871477",
-      databaseURL: "https://churn-simulator.firebaseio.com/"
+      apiKey: 'AIzaSyBre1jfpBSeaCmcXrw7NfDU-nQJjpUajX8',
+      authDomain: 'project-1004742871477',
+      databaseURL: 'https://churn-simulator.firebaseio.com/'
   };
 
   const app = Firebase.initializeApp(config);
@@ -120,7 +120,7 @@
       public getAllScores() {
           // didn't find how to sort in firebase. Unfortunately
           db.ref(`scores`).orderByValue().limitToLast(3).once('value').then(result => {
-              this.allScores = result.toJSON()
+              this.allScores = result.toJSON() || {}
           });
       }
 
