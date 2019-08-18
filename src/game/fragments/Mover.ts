@@ -37,7 +37,8 @@ class Mover extends GameFragmentClass {
             config: setup
         } = bubble;
 
-        element.style.left = `${this.oneXPixel * (Math.abs(setup.renewal - this.config.game.renewal))}px`;
+        const modifyLeft = element.clientWidth / this.config.game.renewal;
+        element.style.left = `${(this.oneXPixel - modifyLeft) * (Math.abs(setup.renewal - this.config.game.renewal))}px`;
         element.style.top = `${this.oneYPixel * setup.lastContact}px`;
     }
 

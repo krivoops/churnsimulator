@@ -71,8 +71,13 @@ class Bubbles extends GameFragmentClass {
             return
         }
 
+        let additionalLastContact = 0;
+        if (setup.lastContact < this.config.game.lastContact / 3) {
+            additionalLastContact = this.bubbles[id].config.lastContact === 0 ? 0 : 2 // 1 default and 2 additional
+        }
+
         this.bubbles[id].config.renewal -= 1;
-        this.bubbles[id].config.lastContact += 1;
+        this.bubbles[id].config.lastContact += 1 + additionalLastContact;
 
         this.bubbles[id].config.health += (this.connector.BubbleIssue as any).generateIssue();
 
