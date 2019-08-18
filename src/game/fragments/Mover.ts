@@ -17,7 +17,8 @@ class Mover extends GameFragmentClass {
 
     private initMovement() {
         this.oneXPixel = this.config.width / this.config.game.renewal;
-        this.oneYPixel = this.config.height / this.config.game.lastContact;
+        // TODO idk why 3
+        this.oneYPixel = (this.config.height / this.config.game.lastContact) - 3;
         Object.keys(this.bubbles).forEach((bubbleId) => {
             this.setUpPos(this.bubbles[bubbleId])
         });
@@ -29,7 +30,6 @@ class Mover extends GameFragmentClass {
             config: setup
         } = bubble;
 
-        console.log(this.oneXPixel, this.oneYPixel);
         element.style.left = `${this.oneXPixel * setup.renewal}px`;
         element.style.top = `${this.oneYPixel * setup.lastContact}px`;
     }
