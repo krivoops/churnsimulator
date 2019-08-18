@@ -19,7 +19,7 @@ class Score extends GameFragmentClass {
 
         if (isOver) {
             (this.connector.Events as any).emitEvent('gameOver', {
-                score: this.score
+                score: Math.round(this.score * 100) / 100
             })
         }
 
@@ -27,10 +27,10 @@ class Score extends GameFragmentClass {
     }
 
     public addScoreForBubble(bubble: GameBubble) {
-        this.score += Math.round(this.score * 100) / 100;
+        this.score += bubble.config.health / 100;
 
         (this.connector.Events as any).emitEvent('score', {
-            score: this.score,
+            score: Math.round(this.score * 100) / 100,
         })
     }
 }
