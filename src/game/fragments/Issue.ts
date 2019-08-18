@@ -54,7 +54,7 @@ class Issues extends GameFragmentClass {
             name: bubble.config.name,
             result: added[1],
             message: added[0],
-        })
+        });
 
         return added[1];
     }

@@ -1,4 +1,16 @@
-import * as G from "glob";
+import {
+    Bubbles, Mover, Score, Actions, BubbleIssue, Events,
+} from './fragments'
+
+interface RandomizerConfig {
+    bubble: {
+        paying: [number, number],
+        health: [number, number],
+        lastContact: [number, number],
+        renewal: [number, number],
+    }
+}
+
 
 interface GameConfig {
     width: number,
@@ -16,18 +28,16 @@ interface GameConfig {
         minSize: number,
         sizeCoef: number,
     },
-    randomizer: {
-        bubble: {
-            paying: [number, number],
-            health: [number, number],
-            lastContact: [number, number],
-            renewal: [number, number],
-        }
-    }
+    randomizer: RandomizerConfig,
 }
 
 interface GameFragments {
-    [s: string]: GameFragment
+    Bubbles: Bubbles,
+    Mover: Mover,
+    Score: Score,
+    Events: Events,
+    Actions: Actions,
+    Issue: BubbleIssue,
 }
 
 interface GameFragment {
@@ -35,6 +45,7 @@ interface GameFragment {
     config: GameConfig,
     connector: GameFragments,
     init?: (params?: any) => {},
+    <T>(): T
 }
 
 interface GameBubbles {
@@ -55,3 +66,5 @@ interface GameBubble {
     config: GameBubbleConfig,
     id: number,
 }
+
+type GameBubbleActionsTypes = 'click'

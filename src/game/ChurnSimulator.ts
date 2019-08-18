@@ -5,6 +5,7 @@ import { GameConfig, GameFragments } from '@/game/index';
 class ChurnSimulator {
     public config: GameConfig = config;
     public playground: Element;
+    // @ts-ignore
     public fragments: GameFragments = {};
 
     constructor(playground: Element) {
@@ -23,7 +24,7 @@ class ChurnSimulator {
         // @ts-ignore
         this.fragments.Score.init();
         // @ts-ignore
-        this.fragments.BubbleActions.init();
+        this.fragments.Actions.init();
     }
 
     public setupView () {
@@ -53,6 +54,7 @@ class ChurnSimulator {
                 config: this.config,
                 connector: this.fragments,
             });
+            // @ts-ignore
             this.fragments[fragmentKey] = Fragment;
         })
     }
