@@ -13,7 +13,11 @@ import ChurnSimulator from '@/game/ChurnSimulator'
 @Component
 export default class Canvas extends Vue {
   public mounted() {
-      new ChurnSimulator((this.$refs.target as Element))
+      new ChurnSimulator((this.$refs.target as Element));
+
+      document.addEventListener('CSG.over', function () {
+          console.log('over');
+      })
   }
 }
 </script>
@@ -22,5 +26,6 @@ export default class Canvas extends Vue {
   .bubble {
     text-align: center;
     transition: all .5s;
+    cursor: pointer;
   }
 </style>

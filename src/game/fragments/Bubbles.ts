@@ -4,6 +4,7 @@ import { getRandomBubblesPos } from '@/game/utils/randomizer';
 
 class Bubbles extends GameFragmentClass {
     public bubbles: GameBubbles = {};
+    public bubblesDeleted = 0;
 
     constructor(data: GameFragment) {
         super(data);
@@ -14,7 +15,6 @@ class Bubbles extends GameFragmentClass {
             this.create(i)
         }
 
-        console.log(this.connector)
         // @ts-ignore
         this.connector.Mover.init(this.bubbles)
     }
@@ -31,10 +31,15 @@ class Bubbles extends GameFragmentClass {
             id,
         };
 
-        this.playground.appendChild(bubble)
+        this.playground.appendChild(bubble);
+
+        bubble.addEventListener('click', this.bubbleCLickAction(id))
     }
 
     private doStylesForBubble(setupConfig: any, element: HTMLElement) {
+        if (!setupConfig.active) {
+            return
+        }
         const randomizer = this.config.randomizer.bubble;
         const sizeCoef = ((setupConfig.paying + 5) - randomizer.paying[0]) * 0.2;
         const size = this.config.bubbles.minSize * sizeCoef;
@@ -62,6 +67,10 @@ class Bubbles extends GameFragmentClass {
             id,
         } = bubble;
 
+        if (!setup.active) {
+            return
+        }
+
         this.bubbles[id].config.renewal -= 1;
         this.bubbles[id].config.lastContact += 1;
 
@@ -70,10 +79,26 @@ class Bubbles extends GameFragmentClass {
         }
 
         if (this.bubbles[id].config.lastContact >= 90) {
-            this.bubbles[id].config.lastContact = 0
+            this.deleteBubble(id);
         }
 
+        if (!this.bubbles[id]) {
+            return
+        }
         this.doStylesForBubble(this.bubbles[id].config, element)
+    }
+
+    private deleteBubble(bubbleId: number) {
+        this.bubbles[bubbleId].node.remove();
+        this.bubbles[bubbleId].config.active = false;
+
+        this.bubblesDeleted += 1;
+    }
+
+    private bubbleCLickAction(id: number) {
+        return () => {
+            this.bubbles[id].config.lastContact = 0
+        }
     }
 }
 

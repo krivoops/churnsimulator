@@ -2,7 +2,6 @@ import GameFragmentClass from './common'
 import { GameBubbles, GameFragment } from '@/game';
 
 class Mover extends GameFragmentClass {
-    public bubbles: any = {};
     public oneXPixel = 0;
     public oneYPixel = 0;
 
@@ -14,7 +13,6 @@ class Mover extends GameFragmentClass {
     }
 
     public init(bubbles: GameBubbles) {
-        this.bubbles = bubbles;
         this.initMovement(false);
 
         this.createLooper();
@@ -25,12 +23,12 @@ class Mover extends GameFragmentClass {
         // TODO idk why 3
         this.oneYPixel = (this.config.height / this.config.game.lastContact) - 3;
 
-        Object.keys(this.bubbles).forEach((bubbleId) => {
+        Object.keys((this.connector.Bubbles as any).bubbles).forEach((bubbleId) => {
             if (move) {
                 // @ts-ignore
-                this.connector.Bubbles.doTick(this.bubbles[bubbleId]);
+                this.connector.Bubbles.doTick((this.connector.Bubbles as any).bubbles[bubbleId]);
             }
-            this.setUpPos(this.bubbles[bubbleId], false)
+            this.setUpPos((this.connector.Bubbles as any).bubbles[bubbleId], false)
         });
     }
 
@@ -50,7 +48,7 @@ class Mover extends GameFragmentClass {
     }
 
     private doLoop() {
-        if (!this.looperEnabled || this.ticksDone >= this.config.game.ticksToEnd) {
+        if (!this.looperEnabled || (this.connector.Score as any).checkGameOver()) {
             return false;
         }
 
@@ -69,7 +67,6 @@ class Mover extends GameFragmentClass {
 
     private tick() {
         this.ticksDone += 1;
-        console.log(this.ticksDone);
         this.initMovement();
     }
 }

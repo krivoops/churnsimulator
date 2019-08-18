@@ -16,9 +16,10 @@ class ChurnSimulator {
     private init() {
         this.setupView();
         this.installParts(gameFragments);
-
         // @ts-ignore
         this.fragments.Bubbles.init();
+        // @ts-ignore
+        this.fragments.Score.init();
     }
 
     public setupView () {
@@ -35,8 +36,6 @@ class ChurnSimulator {
                 width,
                 height
             }
-
-            console.log(this.config)
         };
 
         resize();
