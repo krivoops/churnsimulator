@@ -67,8 +67,8 @@ class Mover extends GameFragmentClass {
     }
 
     private tick() {
-        this.ticksDone += 1;
         this.initMovement();
+        this.ticksDone += 1;
     }
 }
 
