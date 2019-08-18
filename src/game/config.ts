@@ -3,6 +3,10 @@ import {GameConfig} from "@/game/index";
 const config: GameConfig = {
     width: 0, // auto filled
     height: 0, // auto filled
+    game: {
+        renewal: 360,
+        lastContact: 90,
+    },
     bubbles: {
         count: 10, // bubbles count
         minSize: 20, // min bubble size

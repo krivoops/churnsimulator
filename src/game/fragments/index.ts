@@ -1,6 +1,7 @@
 import Bubbles from './Bubbles'
-import {GameConfig, GameFragments} from "@/game";
+import Mover from './Mover'
 
 export {
-    Bubbles
+    Bubbles,
+    Mover
 }

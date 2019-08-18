@@ -1,7 +1,6 @@
 import config from './config'
 import * as gameFragments from './fragments'
 import {GameConfig, GameFragments} from "@/game/index";
-import Canvas from "@/components/CanvasHolder.vue";
 
 class ChurnSimulator {
     public config: GameConfig = config;
@@ -17,6 +16,9 @@ class ChurnSimulator {
     private init() {
         this.setupView();
         this.installParts(gameFragments);
+
+        // @ts-ignore
+        this.fragments.Bubbles.init();
     }
 
     public setupView () {
@@ -24,7 +26,7 @@ class ChurnSimulator {
         // @ts-ignore
         const resize = () => {
             const width = window.innerWidth * 0.8;
-            const height = window.innerHeight * 0.7;
+            const height = window.innerHeight;
             (this.playground as any).style.width = width + 'px'; // TODO fix as any
             (this.playground as any).style.height = height * 0.7 + 'px';
 
@@ -33,6 +35,8 @@ class ChurnSimulator {
                 width,
                 height
             }
+
+            console.log(this.config)
         };
 
         resize();
@@ -41,11 +45,12 @@ class ChurnSimulator {
 
     private installParts(fragments: any) { // TODO define
         Object.keys(fragments).forEach(fragmentKey => {
-            this.fragments[fragmentKey] = new fragments[fragmentKey]({
+            const Fragment = new fragments[fragmentKey]({
                 playground: this.playground,
                 config: this.config,
                 connector: this.fragments,
-            })
+            });
+            this.fragments[fragmentKey] = Fragment;
         })
     }
 }

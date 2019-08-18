@@ -13,5 +13,7 @@ export default abstract class GameFragment implements GameFragment {
         this.playground = playground;
         this.config = config;
         this.connector = connector;
+
+        return this;
     }
 }

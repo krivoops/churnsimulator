@@ -3,6 +3,10 @@ import * as G from "glob";
 interface GameConfig {
     width: number,
     height: number,
+    game: {
+        renewal: 360,
+        lastContact: 90,
+    }
     bubbles: {
         count: number,
         minSize: number,
@@ -25,4 +29,21 @@ interface GameFragment {
     playground: Element,
     config: GameConfig,
     connector: GameFragments,
+    init?: (params?: any) => {},
+}
+
+interface GameBubbles {
+    [s: string]: GameBubble,
+}
+
+interface GameBubbleConfig {
+    paying: number,
+    health: number,
+    lastContact: number,
+    renewal: number
+}
+
+interface GameBubble {
+    node: HTMLElement,
+    config: GameBubbleConfig,
 }

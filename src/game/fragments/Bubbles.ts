@@ -1,20 +1,22 @@
 import GameFragmentClass from './common'
-import { GameFragment } from '@/game';
+import { GameBubbles, GameFragment} from '@/game';
 import { getRandomBubblesPos } from '@/game/utils/randomizer';
 
 class Bubbles extends GameFragmentClass {
-    public bubbles: any = {};
+    public bubbles: GameBubbles = {};
 
     constructor(data: GameFragment) {
         super(data);
-
-        this.init();
     }
 
-    private init() {
+    public init() {
         for (let i = 0; i < this.config.bubbles.count; i++) {
             this.create(i)
         }
+
+        console.log(this.connector)
+        // @ts-ignore
+        this.connector.Mover.init(this.bubbles)
     }
 
     private create(id: number) {
@@ -31,17 +33,17 @@ class Bubbles extends GameFragmentClass {
         this.playground.appendChild(bubble)
     }
 
-    private doStylesForBubble(setupConfig: any, bubble: HTMLElement) {
+    private doStylesForBubble(setupConfig: any, element: HTMLElement) {
         const randomizer = this.config.randomizer.bubble;
         const sizeCoef = ((setupConfig.paying + 5) - randomizer.paying[0]) * 0.2;
         const size = this.config.bubbles.minSize * sizeCoef;
 
-        bubble.className += 'bubble border border-gray-500 rounded-full flex items-center justify-center';
+        element.className += 'bubble border border-gray-500 rounded-full flex items-center justify-center';
         // @ts-ignore
-        bubble.style['font-size'] = `${0.15 * sizeCoef}em`;
-        bubble.style.width = `${size}px`;
-        bubble.style.height = `${size}px`;
-        bubble.style.position = 'absolute';
+        element.style['font-size'] = `${0.15 * sizeCoef}em`;
+        element.style.width = `${size}px`;
+        element.style.height = `${size}px`;
+        element.style.position = 'absolute';
 
         const healfCoef = setupConfig.health / this.config.randomizer.bubble.health[1];
         const redCoef = healfCoef > 0.75 ? 0 : 255 * (1 / healfCoef);
@@ -49,7 +51,7 @@ class Bubbles extends GameFragmentClass {
 
         const backgroundColor = `rgb(${redCoef},${greenCoef},0)`;
         // @ts-ignore
-        bubble.style['background-color'] = backgroundColor;
+        element.style['background-color'] = backgroundColor;
     }
 }
 
