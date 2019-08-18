@@ -1,6 +1,5 @@
 <template>
-  <div id="app">
-    <h2 class="text-sm">Hi</h2>
+  <div id="app" class="flex">
     <router-view/>
   </div>
 </template>
