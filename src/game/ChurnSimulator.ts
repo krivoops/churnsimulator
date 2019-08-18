@@ -10,7 +10,9 @@ class ChurnSimulator {
     constructor(playground: Element) {
         this.playground = playground;
 
-        this.init()
+        this.setupView();
+
+        return this
     }
 
     private init() {

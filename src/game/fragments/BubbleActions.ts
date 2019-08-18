@@ -42,7 +42,7 @@ class BubbleActions extends GameFragmentClass {
 
     private addBubbleHealthAction(id: number) {
         if (this.checkCD('addBubbleHealth')) {
-            (this.connector.Bubbles as any).bubbles[id].config.health += (this.connector.BubbleIssue as any).addBubbleHealth();
+            (this.connector.Bubbles as any).bubbles[id].config.health += (this.connector.BubbleIssue as any).addBubbleHealth((this.connector.Bubbles as any).bubbles[id]);
             this.addBubbleHealthCD = new Date().getTime();
         } else {
             (this.connector.Events as any).emitEvent('CD')

@@ -13,8 +13,15 @@ class Events extends GameFragmentClass {
         this.events[name] = new Event(`CSG.${name}`);
     }
 
-    public emitEvent(name: string) {
-        document.dispatchEvent(this.events[name]);
+    public emitEvent(name: string, payload: any) {
+        if (!payload) {
+            document.dispatchEvent(this.events[name]);
+        }
+
+        if (payload) {
+            this.events[name] = new CustomEvent(`CSG.${name}`,{ detail: payload });
+            document.dispatchEvent(this.events[name]);
+        }
     }
 }
 

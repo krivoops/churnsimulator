@@ -44,7 +44,7 @@ class Bubbles extends GameFragmentClass {
         const sizeCoef = ((setupConfig.paying + 5) - randomizer.paying[0]) * this.config.bubbles.sizeCoef;
         const size = this.config.bubbles.minSize * sizeCoef;
 
-        element.className = 'bubble border border-gray-500 rounded-full flex items-center justify-center';
+        element.className = 'bubble border border-gray-500 rounded-full flex items-center justify-center shadow-md';
         // @ts-ignore
         element.style['font-size'] = `${0.15 * sizeCoef}em`;
         element.style.width = `${size}px`;
@@ -79,7 +79,7 @@ class Bubbles extends GameFragmentClass {
         this.bubbles[id].config.renewal -= 1;
         this.bubbles[id].config.lastContact += 1 + additionalLastContact;
 
-        this.bubbles[id].config.health += (this.connector.BubbleIssue as any).generateIssue();
+        this.bubbles[id].config.health += (this.connector.BubbleIssue as any).generateIssue(this.bubbles[id]);
 
         if (this.bubbles[id].config.health > 10) {
             this.bubbles[id].config.health = 10;
@@ -99,16 +99,22 @@ class Bubbles extends GameFragmentClass {
             this.deleteBubble(id);
         }
 
-        if (!this.bubbles[id]) {
+        if (!this.bubbles[id].config.active) {
             return
         }
+
+        (this.connector.Score as any).addScoreForBubble(this.bubbles[id]);
         this.doStylesForBubble(this.bubbles[id].config, element)
     }
 
     private deleteBubble(bubbleId: number) {
-        this.bubbles[bubbleId].node.remove();
-        this.bubbles[bubbleId].config.active = false;
+        this.bubbles[bubbleId].node.className += ' deleted';
 
+        setTimeout(() => {
+            this.bubbles[bubbleId].node.remove();
+        }, 500);
+
+        this.bubbles[bubbleId].config.active = false;
         this.bubblesDeleted += 1;
     }
 
@@ -117,7 +123,6 @@ class Bubbles extends GameFragmentClass {
             if (!e.altKey) {
                 this.bubbles[id].config.lastContact = 0
             } else {
-                console.log('loli')
                 this.addBubleHealthAction(id)
             }
         }

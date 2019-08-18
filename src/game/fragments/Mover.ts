@@ -20,7 +20,7 @@ class Mover extends GameFragmentClass {
 
     private initMovement(move = true) {
         this.oneXPixel = this.config.width / this.config.game.renewal;
-        this.oneYPixel = this.config.height / this.config.game.lastContact + 1;
+        this.oneYPixel = this.config.height / this.config.game.lastContact;
 
         Object.keys((this.connector.Bubbles as any).bubbles).forEach((bubbleId) => {
             if (move) {
@@ -38,8 +38,9 @@ class Mover extends GameFragmentClass {
         } = bubble;
 
         const modifyLeft = element.clientWidth / this.config.game.renewal;
+        const modifyTop = element.clientHeight / this.config.game.lastContact;
         element.style.left = `${(this.oneXPixel - modifyLeft) * (Math.abs(setup.renewal - this.config.game.renewal))}px`;
-        element.style.top = `${this.oneYPixel * setup.lastContact}px`;
+        element.style.top = `${(this.oneYPixel - modifyTop) * setup.lastContact}px`;
     }
 
     private createLooper() {

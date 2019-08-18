@@ -46,6 +46,7 @@ interface GameBubbleConfig {
     health: number,
     lastContact: number,
     renewal: number,
+    name: string,
     active: boolean,
 }
 

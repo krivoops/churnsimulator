@@ -1,6 +1,6 @@
 import GameFragmentClass from './common'
 // @ts-ignore
-import { GameBubbles, GameFragment } from '@/game';
+import {GameBubble, GameBubbles, GameFragment} from '@/game';
 import {randomIntFromInterval} from '@/game/utils/randomizer';
 
 const issues = [
@@ -29,20 +29,34 @@ class Issues extends GameFragmentClass {
         super(data);
     }
 
-    public generateIssue(name: string) {
+    public generateIssue(bubble: GameBubble) {
         const isbigIssue = randomIntFromInterval(1,100);
 
-        let issueValue:any= randomIntFromInterval(-0.9,0.3, false);
+        let issueValue:any= randomIntFromInterval(-1,0.3, false);
         if (isbigIssue > this.config.game.hardness) {
             const issue = issues[randomIntFromInterval(0,9)];
             issueValue = issue[1];
+
+            (this.connector.Events as any).emitEvent('message', {
+                name: bubble.config.name,
+                result: issue[1],
+                message: issue[0],
+            })
         }
 
         return issueValue
     }
 
-    public addBubbleHealth() {
-        return addHealth[randomIntFromInterval(0,4)][1];
+    public addBubbleHealth(bubble: GameBubble) {
+        const added = addHealth[randomIntFromInterval(0,4)];
+
+        (this.connector.Events as any).emitEvent('message', {
+            name: bubble.config.name,
+            result: added[1],
+            message: added[0],
+        })
+
+        return added[1];
     }
 }
 
