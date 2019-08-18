@@ -8,10 +8,12 @@ interface GameConfig {
         lastContact: number,
         ticksPerSecond: number,
         ticksToEnd: number,
+        hardness: number,
     }
     bubbles: {
         count: number,
         minSize: number,
+        sizeCoef: number,
     },
     randomizer: {
         bubble: {

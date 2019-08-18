@@ -57,4 +57,5 @@ const getRandomBubblesPos = (config: GameConfig) => {
 
 export {
     getRandomBubblesPos,
+    randomIntFromInterval,
 }

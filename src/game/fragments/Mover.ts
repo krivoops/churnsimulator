@@ -20,8 +20,7 @@ class Mover extends GameFragmentClass {
 
     private initMovement(move = true) {
         this.oneXPixel = this.config.width / this.config.game.renewal;
-        // TODO idk why 3
-        this.oneYPixel = (this.config.height / this.config.game.lastContact) - 3;
+        this.oneYPixel = this.config.height / this.config.game.lastContact + 1;
 
         Object.keys((this.connector.Bubbles as any).bubbles).forEach((bubbleId) => {
             if (move) {

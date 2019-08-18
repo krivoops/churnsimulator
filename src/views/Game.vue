@@ -1,7 +1,7 @@
 <template>
-  <div class="flex justify-center flex-column w-full mt-3">
+  <div class="flex justify-center min-h-full flex-column w-full mt-3">
     <div>
-      <h1 class="flex text-3xl">Churn Simulator</h1>
+      <h1 class="text-3xl mb-3 text-center">Churn Simulator</h1>
       <game-holder></game-holder>
     </div>
   </div>

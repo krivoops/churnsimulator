@@ -41,10 +41,10 @@ class Bubbles extends GameFragmentClass {
             return
         }
         const randomizer = this.config.randomizer.bubble;
-        const sizeCoef = ((setupConfig.paying + 5) - randomizer.paying[0]) * 0.2;
+        const sizeCoef = ((setupConfig.paying + 5) - randomizer.paying[0]) * this.config.bubbles.sizeCoef;
         const size = this.config.bubbles.minSize * sizeCoef;
 
-        element.className += 'bubble border border-gray-500 rounded-full flex items-center justify-center';
+        element.className = 'bubble border border-gray-500 rounded-full flex items-center justify-center';
         // @ts-ignore
         element.style['font-size'] = `${0.15 * sizeCoef}em`;
         element.style.width = `${size}px`;
@@ -76,6 +76,16 @@ class Bubbles extends GameFragmentClass {
 
         if (this.bubbles[id].config.renewal <= 0) {
             this.bubbles[id].config.renewal = 360
+        }
+
+        this.bubbles[id].config.health += (this.connector.BubbleIssue as any).generateIssue();
+
+        if (this.bubbles[id].config.health > 10) {
+            this.bubbles[id].config.health = 10;
+        }
+
+        if (this.bubbles[id].config.health < 0) {
+            this.bubbles[id].config.health = 0;
         }
 
         if (this.bubbles[id].config.lastContact >= 90) {

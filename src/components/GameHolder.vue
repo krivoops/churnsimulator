@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div ref="target" class="border-2 w-full">
+    <div ref="target" class="border-2 w-full overflow-hidden">
     </div>
   </div>
 </template>
@@ -27,5 +27,6 @@ export default class Canvas extends Vue {
     text-align: center;
     transition: all .5s;
     cursor: pointer;
+    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 50%);
   }
 </style>

@@ -26,10 +26,11 @@ class ChurnSimulator {
         (this.playground as any).style.position = 'relative';
         // @ts-ignore
         const resize = () => {
+            console.log(window.innerHeight)
             const width = window.innerWidth * 0.8;
-            const height = window.innerHeight;
+            const height = window.innerHeight * 0.7;
             (this.playground as any).style.width = width + 'px'; // TODO fix as any
-            (this.playground as any).style.height = height * 0.7 + 'px';
+            (this.playground as any).style.height = height + 'px';
 
             this.config = {
                 ...this.config,
