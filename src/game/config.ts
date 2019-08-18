@@ -8,7 +8,8 @@ const config: GameConfig = {
         lastContact: 90,
         ticksPerSecond: 6,
         ticksToEnd: 720,
-        hardness: 95 // 1 - hell / 100 your service is just perfect
+        hardness: 95, // 1 - hell / 100 your service is just perfect
+        clickCD: 2000
     },
     bubbles: {
         count: 10, // bubbles count

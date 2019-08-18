@@ -9,6 +9,7 @@ interface GameConfig {
         ticksPerSecond: number,
         ticksToEnd: number,
         hardness: number,
+        clickCD: number,
     }
     bubbles: {
         count: number,

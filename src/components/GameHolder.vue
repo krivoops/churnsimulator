@@ -2,6 +2,7 @@
   <div>
     <div ref="target" class="border-2 w-full overflow-hidden">
     </div>
+    {{ message }}
   </div>
 </template>
 
@@ -12,11 +13,20 @@ import ChurnSimulator from '@/game/ChurnSimulator'
 
 @Component
 export default class Canvas extends Vue {
+    message = '';
+
   public mounted() {
       new ChurnSimulator((this.$refs.target as Element));
 
       document.addEventListener('CSG.over', function () {
           console.log('over');
+      });
+
+      document.addEventListener('CSG.CD', () => {
+          this.message = 'This action is under CD';
+          setTimeout(() => {
+              this.message = '';
+          }, 2000)
       })
   }
 }
@@ -28,5 +38,6 @@ export default class Canvas extends Vue {
     transition: all .5s;
     cursor: pointer;
     background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 50%);
+    user-select: none;
   }
 </style>

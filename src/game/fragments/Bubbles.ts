@@ -33,7 +33,7 @@ class Bubbles extends GameFragmentClass {
 
         this.playground.appendChild(bubble);
 
-        bubble.addEventListener('click', this.bubbleCLickAction(id))
+        bubble.addEventListener('click', (this.connector.BubbleActions as any).onClick(id))
     }
 
     private doStylesForBubble(setupConfig: any, element: HTMLElement) {
@@ -74,10 +74,6 @@ class Bubbles extends GameFragmentClass {
         this.bubbles[id].config.renewal -= 1;
         this.bubbles[id].config.lastContact += 1;
 
-        if (this.bubbles[id].config.renewal <= 0) {
-            this.bubbles[id].config.renewal = 360
-        }
-
         this.bubbles[id].config.health += (this.connector.BubbleIssue as any).generateIssue();
 
         if (this.bubbles[id].config.health > 10) {
@@ -86,6 +82,12 @@ class Bubbles extends GameFragmentClass {
 
         if (this.bubbles[id].config.health < 0) {
             this.bubbles[id].config.health = 0;
+        }
+
+        if (this.bubbles[id].config.renewal <= 0 && this.bubbles[id].config.health > 3.5) {
+            this.bubbles[id].config.renewal = 360
+        } else if (this.bubbles[id].config.health <= 3.5 && this.bubbles[id].config.renewal <= 0) {
+            this.deleteBubble(id);
         }
 
         if (this.bubbles[id].config.lastContact >= 90) {
@@ -106,9 +108,18 @@ class Bubbles extends GameFragmentClass {
     }
 
     private bubbleCLickAction(id: number) {
-        return () => {
-            this.bubbles[id].config.lastContact = 0
+        return (e: any) => {
+            if (!e.altKey) {
+                this.bubbles[id].config.lastContact = 0
+            } else {
+                console.log('loli')
+                this.addBubleHealthAction(id)
+            }
         }
+    }
+
+    private addBubleHealthAction(id: number) {
+        this.bubbles[id].config.health += (this.connector.BubbleIssue as any).addBubbleHealth();
     }
 }
 

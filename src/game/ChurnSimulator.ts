@@ -20,13 +20,14 @@ class ChurnSimulator {
         this.fragments.Bubbles.init();
         // @ts-ignore
         this.fragments.Score.init();
+        // @ts-ignore
+        this.fragments.BubbleActions.init();
     }
 
     public setupView () {
         (this.playground as any).style.position = 'relative';
         // @ts-ignore
         const resize = () => {
-            console.log(window.innerHeight)
             const width = window.innerWidth * 0.8;
             const height = window.innerHeight * 0.7;
             (this.playground as any).style.width = width + 'px'; // TODO fix as any
