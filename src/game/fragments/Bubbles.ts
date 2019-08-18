@@ -77,12 +77,15 @@ class Bubbles extends GameFragmentClass {
         const bubble = this.bubbles[bubbleId];
         bubble.node.className += ' deleted';
 
-        setTimeout(() => {
-            bubble.node.remove();
-        }, 500);
-
         bubble.config.active = false;
         this.bubblesDeleted += 1;
+
+        return new Promise<boolean>((resolve) => {
+            setTimeout(() => {
+                bubble.node.remove();
+                resolve(true)
+            }, 500);
+        })
     }
 
     public updateLastContact(bubbleId: number) {
@@ -95,6 +98,17 @@ class Bubbles extends GameFragmentClass {
         const bubble = this.bubbles[bubbleId];
 
         bubble.config.health += this.connector.Issue.communicateWithCustomer(bubble);
+    }
+
+    public restart() {
+        const promiseArray:any = [];
+        for (let i = 0; i < this.config.bubbles.count; i++) {
+            promiseArray.push(this.deleteBubble(i));
+        }
+
+        return new Promise(async (resolve) => {
+            return Promise.all(promiseArray)
+        })
     }
 }
 

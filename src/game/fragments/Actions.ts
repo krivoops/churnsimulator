@@ -1,17 +1,19 @@
 import GameFragmentClass from './common'
 import {GameBubble, GameBubbleActionsCoolDownTypes, GameBubbleActionsTypes, GameFragment} from '@/game';
 
-import * as bubbleHelpers from './helpers/bubble';
+const actionsCounterInit = {
+    click: 0
+};
+
+const coolDownStore = {
+    click: 0,
+    altClick: 0,
+};
 
 class Actions extends GameFragmentClass {
-    public actionsCounter = {
-        click: 0
-    };
+    public actionsCounter = actionsCounterInit;
 
-    public coolDownStore = {
-        click: 0,
-        altClick: 0,
-    };
+    public coolDownStore = coolDownStore;
 
     public actionsMap = {
         click: (id: number) => {
@@ -30,8 +32,6 @@ class Actions extends GameFragmentClass {
             }
         }
     };
-
-    public addBubbleHealthCD = 0;
 
     constructor(data: GameFragment) {
         super(data);
@@ -63,6 +63,15 @@ class Actions extends GameFragmentClass {
             timeLeft: time - currentTime
         });
         return false
+    }
+
+    public restart() {
+        return new Promise(resolve => {
+            this.actionsCounter = actionsCounterInit;
+            this.coolDownStore = coolDownStore;
+
+            resolve(true)
+        })
     }
 }
 

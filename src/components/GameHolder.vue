@@ -81,7 +81,7 @@
 
       allScores = {};
 
-      start() {
+      async start() {
           this.score = 0;
           this.scoreNotAdded = true;
           this.gameNotStarted = false;

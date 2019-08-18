@@ -16,14 +16,20 @@ class ChurnSimulator {
         return this
     }
 
-    private init() {
+    public init() {
         this.setupView();
         this.installParts(gameFragments);
         // @ts-ignore
         this.fragments.Bubbles.init();
     }
 
-    public setupView () {
+    public async restart() {
+        await this.fragments.Bubbles.restart();
+        // @ts-ignore
+        this.fragments = {};
+    }
+
+    private setupView () {
         (this.playground as any).style.position = 'relative';
         // @ts-ignore
         const resize = () => {
