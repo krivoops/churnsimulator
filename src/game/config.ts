@@ -1,4 +1,4 @@
-import {GameConfig} from "@/game/index";
+import { GameConfig } from '@/game/index';
 
 const config: GameConfig = {
     width: 0, // auto filled

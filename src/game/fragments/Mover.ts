@@ -1,5 +1,5 @@
 import GameFragmentClass from './common'
-import {GameBubbles, GameFragment} from '@/game';
+import { GameBubbles, GameFragment } from '@/game';
 
 class Mover extends GameFragmentClass {
     public bubbles: any = {};

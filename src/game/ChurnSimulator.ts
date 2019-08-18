@@ -1,6 +1,6 @@
 import config from './config'
 import * as gameFragments from './fragments'
-import {GameConfig, GameFragments} from "@/game/index";
+import { GameConfig, GameFragments } from '@/game/index';
 
 class ChurnSimulator {
     public config: GameConfig = config;

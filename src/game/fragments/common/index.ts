@@ -1,4 +1,4 @@
-import {GameConfig, GameFragments} from "@/game";
+import { GameConfig, GameFragments } from '@/game';
 
 export default abstract class GameFragment implements GameFragment {
     public playground: Element;
