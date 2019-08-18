@@ -1,7 +1,7 @@
 import GameFragmentClass from './common'
 // @ts-ignore
 import { GameBubbles, GameFragment } from '@/game';
-import {randomIntFromInterval} from "@/game/utils/randomizer";
+import {randomIntFromInterval} from '@/game/utils/randomizer';
 
 const issues = [
     [`I'm happy`, 5],

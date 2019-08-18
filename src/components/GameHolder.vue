@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div ref="target" class="border-2 w-full overflow-hidden">
+    <div ref="target" class="border-2 w-full overflow-hidden shadow-lg">
     </div>
     {{ message }}
   </div>
