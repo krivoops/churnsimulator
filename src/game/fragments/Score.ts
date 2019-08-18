@@ -18,17 +18,19 @@ class Score extends GameFragmentClass {
             || (this.connector.Bubbles as any).bubblesDeleted === this.config.bubbles.count;
 
         if (isOver) {
-            (this.connector.Events as any).emitEvent('gameOver')
+            (this.connector.Events as any).emitEvent('gameOver', {
+                score: this.score
+            })
         }
 
         return isOver
     }
 
     public addScoreForBubble(bubble: GameBubble) {
-        this.score += bubble.config.health / 100;
+        this.score += Math.round(this.score * 100) / 100;
 
         (this.connector.Events as any).emitEvent('score', {
-            score: Math.round(this.score * 100) / 100,
+            score: this.score,
         })
     }
 }
