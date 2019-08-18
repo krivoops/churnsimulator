@@ -12,6 +12,7 @@
     "@fullhuman/postcss-purgecss": "^1.2.0",
     "core-js": "^2.6.5",
     "es6-promise-promise": "^1.0.0",
+    "firebase": "^6.4.0",
     "firebase-tools": "^7.2.2",
     "register-service-worker": "^1.6.2",
     "tailwindcss": "^1.1.2",

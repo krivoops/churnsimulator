@@ -31,7 +31,7 @@ class Score extends GameFragmentClass {
 
         (this.connector.Events as any).emitEvent('score', {
             score: Math.round(this.score * 100) / 100,
-        })
+        });
     }
 }
 
