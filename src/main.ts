@@ -8,7 +8,13 @@ import 'tailwindcss/dist/base.css';
 import 'tailwindcss/dist/components.css';
 import 'tailwindcss/dist/utilities.css';
 
+import ChurnSimulator from './game/install'
+
 Vue.config.productionTip = false;
+
+Vue.use(ChurnSimulator, {
+  store
+});
 
 new Vue({
   router,

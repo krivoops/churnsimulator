@@ -16,10 +16,11 @@ class ChurnSimulator {
         return this
     }
 
-    public init() {
+    public init(eventNameSpace?: string) {
         this.setupView();
         this.installParts(gameFragments);
-        // @ts-ignore
+        this.fragments.Events.init(eventNameSpace);
+
         this.fragments.Bubbles.init();
     }
 
