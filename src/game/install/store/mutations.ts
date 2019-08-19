@@ -40,7 +40,10 @@ export default {
     },
 
     setMessage(state: any, payload: any) {
-        state.messages.unshift(payload)
+        state.messages.unshift({
+            ...payload,
+            key: Math.random() * 1000
+        })
     },
 
     setCooldown(state:any, payload: any) {
