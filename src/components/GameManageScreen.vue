@@ -7,6 +7,12 @@
                 </div>
             </transition-group>
         </div>
+        <div v-if="isPlaying" class="absolute bottom-0 right-0 mx-3 my-3">
+            <button class="focus:outline-none text-xs bg-green-400 px-3 py-1 shadow-md mt-6 rounded-lg hover:bg-green-300 hover:shadow-lg transition"
+                    @click="pauseGame">
+                pause
+            </button>
+        </div>
         <div v-if="!isPlaying" class="overlayScreen flex items-center justify-center height">
             <div v-if="isGameOver">
                 <h2 class="text-center text-6xl">Well done!</h2>
