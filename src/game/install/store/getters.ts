@@ -13,5 +13,9 @@ export default {
 
     currentScore(state: any) {
         return state.score
+    },
+
+    messages(state: any) {
+        return state.messages
     }
 }

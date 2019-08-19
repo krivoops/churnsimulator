@@ -33,7 +33,7 @@ class Issues extends GameFragmentClass {
         const isbigIssue = randomIntFromInterval(1,100);
 
         let issueValue:any= randomIntFromInterval(-1,0.3, false);
-        if (isbigIssue > this.config.game.hardness) {
+        if (isbigIssue > this.config.game.hardness && !(this.connector.Mover.ticksDone % 5)) {
             const issue = issues[randomIntFromInterval(0,9)];
             issueValue = issue[1];
 

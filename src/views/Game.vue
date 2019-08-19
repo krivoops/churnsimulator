@@ -5,23 +5,24 @@
       <div class="border-r-0 rounded-r-none flex-0 w-48 border-2 rounded-lg px-3 py-3">
         <div class="text-center uppercase">Dashboard</div>
       </div>
-      <churn-simulator class="flex-1 border-2 w-full overflow-hidden height">
+      <churn-simulator class="flex-1 border-2 w-full overflow-hidden height overflow-hidden">
         <game-manage-screen></game-manage-screen>
       </churn-simulator>
-      <div class="border-l-0 rounded-l-none flex-0 w-48 border-2 rounded-lg px-3 py-3">
-        <div class="text-center uppercase">Messages</div>
-      </div>
+      <GameMessages class="border-l-0 rounded-l-none flex-0 w-48 border-2 rounded-lg px-3 py-3 overflow-hidden" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator';
+
   import GameManageScreen from '@/components/GameManageScreen.vue';
+  import GameMessages from '@/components/GameMessages.vue';
 
   @Component({
     components: {
       GameManageScreen,
+      GameMessages,
     },
   })
   export default class Game extends Vue {}
