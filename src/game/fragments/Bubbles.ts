@@ -2,6 +2,7 @@ import GameFragmentClass from './common'
 import {GameBubble, GameBubbleConfig, GameBubbles, GameFragment} from '@/game';
 
 import * as helpers from './helpers/bubble'
+import set = Reflect.set;
 
 class Bubbles extends GameFragmentClass {
     public bubbles: GameBubbles = {};
@@ -25,7 +26,7 @@ class Bubbles extends GameFragmentClass {
         const bubbleConfig = helpers.createConfig(this.config);
         bubbleElement.innerHTML = helpers.createTemplate(bubbleConfig);
 
-        this.doStylesForBubble(bubbleConfig, bubbleElement);
+        this.doStylesForBubble(bubbleConfig, bubbleElement, true);
         this.bubbles[id] = {
             node: bubbleElement,
             config: bubbleConfig,
@@ -37,12 +38,12 @@ class Bubbles extends GameFragmentClass {
         this.connector.Actions.subscribe(this.bubbles[id], 'click')
     }
 
-    private doStylesForBubble(config: GameBubbleConfig, bubbleElement: HTMLElement) {
+    private doStylesForBubble(config: GameBubbleConfig, bubbleElement: HTMLElement, isStart = false) {
         if (!config.active) {
             return
         }
 
-        helpers.countPosition(this.config, config, bubbleElement);
+        helpers.countPosition(this.config, config, bubbleElement, isStart);
         helpers.countColor(this.config, config, bubbleElement);
     }
 
@@ -82,13 +83,11 @@ class Bubbles extends GameFragmentClass {
         bubble.config.active = false;
         this.bubblesDeleted += 1;
 
-
-
         return new Promise<boolean>((resolve) => {
             setTimeout(() => {
                 bubble.node.remove();
                 resolve(true)
-            }, 500);
+            }, 600);
         })
     }
 

@@ -17,12 +17,21 @@ const createTemplate = (setup: GameBubbleConfig) => {
     return `<div>${setup.name}</div>`
 };
 
-const countPosition = (config: GameConfig, setup: GameBubbleConfig, bubbleElement: HTMLElement) => {
+const countPosition = (config: GameConfig, setup: GameBubbleConfig, bubbleElement: HTMLElement, isStart: boolean) => {
     const randomizer = config.randomizer.bubble;
     const sizeCoef = ((setup.paying + 5) - randomizer.paying[0]) * config.bubbles.sizeCoef;
     const size = config.bubbles.minSize * sizeCoef;
 
-    bubbleElement.className = 'bubble rounded-full flex items-center justify-center shadow-md';
+    const classes = `bubble rounded-full flex items-center justify-center shadow-md`;
+    const alreadyClasses = bubbleElement.className;
+
+    bubbleElement.className = isStart ? classes : alreadyClasses;
+
+    if (isStart) {
+        setTimeout(() => {
+            bubbleElement.className += ' entered'
+        }, 100)
+    }
     // @ts-ignore
     bubbleElement.style['font-size'] = `${0.15 * sizeCoef}em`;
     bubbleElement.style.width = `${size}px`;
