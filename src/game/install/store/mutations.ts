@@ -1,3 +1,5 @@
+import Vue from 'vue';
+
 const getDefaultGameState = (state: any) => {
     state.isPlaying = true;
     state.messages = [];
@@ -42,6 +44,18 @@ export default {
     },
 
     setCooldown(state:any, payload: any) {
-        state.cooldowns[payload.type] = payload.time
+        if (!state.cooldowns[payload.actionType]) {
+            Vue.set(state.cooldowns, payload.actionType, {
+                name: payload.actionType === 'altClick' ? 'Communication cooldown' : '',
+                time: payload.timeLeft / 1000,
+                key: Math.random() * 1000,
+            });
+
+            setTimeout(() => {
+                Vue.delete(state.cooldowns, payload.actionType);
+            }, payload.timeLeft)
+        } else {
+            state.cooldowns[payload.actionType].time = payload.timeLeft
+        }
     }
 }

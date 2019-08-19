@@ -17,5 +17,9 @@ export default {
 
     messages(state: any) {
         return state.messages
+    },
+
+    cooldowns(state: any) {
+        return state.cooldowns
     }
 }

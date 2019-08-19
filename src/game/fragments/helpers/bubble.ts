@@ -22,7 +22,7 @@ const countPosition = (config: GameConfig, setup: GameBubbleConfig, bubbleElemen
     const sizeCoef = ((setup.paying + 5) - randomizer.paying[0]) * config.bubbles.sizeCoef;
     const size = config.bubbles.minSize * sizeCoef;
 
-    const classes = `bubble rounded-full flex items-center justify-center shadow-md`;
+    const classes = `bubble rounded-full flex items-center justify-center shadow-md select-none focus:outline-none cursor-pointer`;
     const alreadyClasses = bubbleElement.className;
 
     bubbleElement.className = isStart ? classes : alreadyClasses;

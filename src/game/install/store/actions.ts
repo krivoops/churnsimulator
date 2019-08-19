@@ -20,7 +20,6 @@ export default {
                 commit('setGameOver', payload)
             }),
             registerEvent(state,'score', (payload: any) => {
-                console.log(payload);
                 commit('setScore', payload)
             }),
             registerEvent(state,'message', (payload: any) => {
