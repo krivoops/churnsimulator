@@ -4,11 +4,11 @@ import { GameConfig, GameFragments } from '@/game/index';
 
 class ChurnSimulator {
     public config: GameConfig = config;
-    public playground: Element;
+    public playground: HTMLElement;
     // @ts-ignore
     public fragments: GameFragments = {};
 
-    constructor(playground: Element) {
+    constructor(playground: HTMLElement) {
         this.playground = playground;
 
         this.setupView();
@@ -31,13 +31,12 @@ class ChurnSimulator {
     }
 
     private setupView () {
-        (this.playground as any).style.position = 'relative';
+        this.playground.style.position = 'relative';
         // @ts-ignore
         const resize = () => {
-            const width = window.innerWidth * 0.8;
-            const height = window.innerHeight * 0.7;
-            (this.playground as any).style.width = width + 'px'; // TODO fix as any
-            (this.playground as any).style.height = height + 'px';
+            const width = this.playground.clientWidth;
+            const height = this.playground.clientHeight;
+            this.playground.style.width = width + 'px';
 
             this.config = {
                 ...this.config,

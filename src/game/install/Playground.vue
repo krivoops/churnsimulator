@@ -1,5 +1,5 @@
 <template>
-    <div ref="target" class="border-2 w-full overflow-hidden shadow-lg">
+    <div ref="target">
         <slot></slot>
     </div>
 </template>

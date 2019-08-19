@@ -38,7 +38,7 @@ export default {
     },
 
     setMessage(state: any, payload: any) {
-        state.messages.push(payload)
+        state.messages.unshift(payload)
     },
 
     setCooldown(state:any, payload: any) {

@@ -76,9 +76,13 @@ class Bubbles extends GameFragmentClass {
     private deleteBubble(bubbleId: number) {
         const bubble = this.bubbles[bubbleId];
         bubble.node.className += ' deleted';
+        // @ts-ignore
+        bubble.node.style.left -= bubble.node.style.width / 2;
 
         bubble.config.active = false;
         this.bubblesDeleted += 1;
+
+
 
         return new Promise<boolean>((resolve) => {
             setTimeout(() => {
