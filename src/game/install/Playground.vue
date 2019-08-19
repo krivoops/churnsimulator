@@ -12,7 +12,7 @@ const namespace = 'churn-simulator';
 
 @Component
 export default class Playground extends Vue {
-    @Action('init', { namespace }) init;
+    @Action('init', { namespace }) init: any;
 
     public mounted() {
         this.init(this.$refs.target)

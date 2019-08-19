@@ -34,11 +34,11 @@ const gameNamespace = 'churn-simulator';
 
 @Component
 export default class GameMessages extends Vue {
-    @Action('start', { namespace: gameNamespace }) startGame;
-    @Action('restart', { namespace: gameNamespace }) restartGame;
+    @Action('start', { namespace: gameNamespace }) startGame: any;
+    @Action('restart', { namespace: gameNamespace }) restartGame: any;
 
-    @Getter('messages', { namespace: gameNamespace }) messages;
-    @Getter('currentScore', { namespace: gameNamespace }) score;
+    @Getter('messages', { namespace: gameNamespace }) messages: any;
+    @Getter('currentScore', { namespace: gameNamespace }) score: any;
 }
 </script>
 

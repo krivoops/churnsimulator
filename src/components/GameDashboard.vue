@@ -27,7 +27,7 @@
 
     @Component
     export default class GameDashboard extends Vue {
-        @Getter('scores', { namespace: dashboardNamespace }) scores;
+        @Getter('scores', { namespace: dashboardNamespace }) scores: any;
     }
 </script>
 

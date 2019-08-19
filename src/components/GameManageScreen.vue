@@ -92,18 +92,18 @@
         name = '';
         isSaved = false;
 
-        @Action('start', { namespace: gameNamespace }) startGame;
-        @Action('restart', { namespace: gameNamespace }) restartGame;
-        @Action('resume', { namespace: gameNamespace }) resumeGame;
-        @Action('pause', { namespace: gameNamespace }) pauseGame;
+        @Action('start', { namespace: gameNamespace }) startGame: any;
+        @Action('restart', { namespace: gameNamespace }) restartGame: any;
+        @Action('resume', { namespace: gameNamespace }) resumeGame: any;
+        @Action('pause', { namespace: gameNamespace }) pauseGame: any;
 
-        @Action('saveScore', { namespace: dashboardNamespace }) saveScore;
+        @Action('saveScore', { namespace: dashboardNamespace }) saveScore: any;
 
-        @Getter('isPlaying', { namespace: gameNamespace }) isPlaying;
-        @Getter('isGameOver', { namespace: gameNamespace }) isGameOver;
-        @Getter('isGamePaused', { namespace: gameNamespace }) isGamePaused;
-        @Getter('currentScore', { namespace: gameNamespace }) score;
-        @Getter('cooldowns', { namespace: gameNamespace }) cooldowns;
+        @Getter('isPlaying', { namespace: gameNamespace }) isPlaying: any;
+        @Getter('isGameOver', { namespace: gameNamespace }) isGameOver: any;
+        @Getter('isGamePaused', { namespace: gameNamespace }) isGamePaused: any;
+        @Getter('currentScore', { namespace: gameNamespace }) score: any;
+        @Getter('cooldowns', { namespace: gameNamespace }) cooldowns: any;
 
         save() {
             this.saveScore({
@@ -125,7 +125,7 @@
         }
 
         @Watch('displayAbout')
-        onDisplayAbout(value) {
+        onDisplayAbout(value: boolean): any {
             if (value && this.isPlaying) {
                 this.pauseGame();
             } else if (this.score > 0) {
