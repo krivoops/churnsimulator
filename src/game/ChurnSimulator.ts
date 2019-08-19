@@ -26,8 +26,8 @@ class ChurnSimulator {
 
     public async restart() {
         await this.fragments.Bubbles.restart();
-        // @ts-ignore
-        this.fragments = {};
+
+        this.init()
     }
 
     private setupView () {

@@ -22,7 +22,7 @@ const countPosition = (config: GameConfig, setup: GameBubbleConfig, bubbleElemen
     const sizeCoef = ((setup.paying + 5) - randomizer.paying[0]) * config.bubbles.sizeCoef;
     const size = config.bubbles.minSize * sizeCoef;
 
-    bubbleElement.className = 'bubble border border-gray-500 rounded-full flex items-center justify-center shadow-md';
+    bubbleElement.className = 'bubble rounded-full flex items-center justify-center shadow-md';
     // @ts-ignore
     bubbleElement.style['font-size'] = `${0.15 * sizeCoef}em`;
     bubbleElement.style.width = `${size}px`;
