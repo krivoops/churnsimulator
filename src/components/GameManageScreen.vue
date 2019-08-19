@@ -47,7 +47,7 @@
                 </div>
             </div>
 
-            <div v-if="isGamePaused && !displayAbout">
+            <div v-if="isGamePaused && !displayAbout && !isGameOver">
                 <div class="text-center">
                     <button class="focus:outline-none bg-green-400 px-6 py-2 shadow rounded-lg hover:bg-green-300 hover:shadow-lg transition"
                             @click="resumeGame">

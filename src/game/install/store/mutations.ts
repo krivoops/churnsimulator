@@ -2,6 +2,8 @@ import Vue from 'vue';
 
 const getDefaultGameState = (state: any) => {
     state.isPlaying = true;
+    state.gameOver = false;
+    state.pause = false;
     state.messages = [];
     state.score = 0;
 };

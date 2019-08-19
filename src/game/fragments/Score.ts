@@ -10,11 +10,11 @@ class Score extends GameFragmentClass {
     }
 
     public checkGameOver() {
-        const isOver = (this.connector.Mover as any).ticksDone >= this.config.game.ticksToEnd
-            || (this.connector.Bubbles as any).bubblesDeleted === this.config.bubbles.count;
+        const isOver = this.connector.Mover.ticksDone >= this.config.game.ticksToEnd
+            || this.connector.Bubbles.bubblesDeleted === this.config.bubbles.count;
 
         if (isOver) {
-            (this.connector.Events as any).emitEvent('gameOver', {
+            this.connector.Events.emitEvent('gameOver', {
                 score: Math.round(this.score * 100) / 100
             })
         }

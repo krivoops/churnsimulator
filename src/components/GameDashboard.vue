@@ -2,11 +2,11 @@
     <div class="relative">
         <div class="text-center uppercase mb-3 sticky">Dashboard</div>
         {{  }}
-        <div class="height-messages overflow-scroll">
+        <div class="height-messages overflow-scroll text-center">
             <transition-group name="fade-deep" tag="div">
                 <div :key="score.key" v-for="(score, index) in scores">
                     <div v-if="index <= 7" class="border-t border-b py-2">
-                        <div>
+                        <div class="font-bold">
                             {{ score.name }}
                         </div>
                         <div>

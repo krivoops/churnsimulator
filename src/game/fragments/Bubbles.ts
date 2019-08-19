@@ -104,6 +104,7 @@ class Bubbles extends GameFragmentClass {
     }
 
     public async restart() {
+        this.bubblesDeleted = 0;
         const promiseArray:any = [];
         for (let i = 0; i < this.config.bubbles.count; i++) {
             promiseArray.push(this.deleteBubble(i));
