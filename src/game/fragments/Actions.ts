@@ -59,7 +59,8 @@ class Actions extends GameFragmentClass {
             return true
         }
 
-        this.connector.Events.emitEvent(`CD_${name}`, {
+        this.connector.Events.emitEvent(`cooldown`, {
+            actionType: name,
             timeLeft: time - currentTime
         });
         return false

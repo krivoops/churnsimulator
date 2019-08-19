@@ -29,6 +29,7 @@ interface GameConfig {
         sizeCoef: number,
     },
     randomizer: RandomizerConfig,
+    defaultEventNamespace: string,
 }
 
 interface GameFragments {

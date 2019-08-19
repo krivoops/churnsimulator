@@ -1,22 +1,23 @@
 <template>
     <div ref="target" class="border-2 w-full overflow-hidden shadow-lg">
-
+        <slot></slot>
     </div>
 </template>
 
 <script lang="ts">
-    import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
+import { Action } from 'vuex-class';
 
-    @Component
-    export default class Canvas extends Vue {
-        public setEventsHandlers() {
+const namespace = 'churn-simulator';
 
-        }
+@Component
+export default class Playground extends Vue {
+    @Action('init', { namespace }) init;
 
-        public mounted() {
-            this.store.dispatch('churn-simulator/init');
-        }
+    public mounted() {
+        this.init(this.$refs.target)
     }
+}
 </script>
 
 <style lang="scss">

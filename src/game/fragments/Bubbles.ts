@@ -100,15 +100,13 @@ class Bubbles extends GameFragmentClass {
         bubble.config.health += this.connector.Issue.communicateWithCustomer(bubble);
     }
 
-    public restart() {
+    public async restart() {
         const promiseArray:any = [];
         for (let i = 0; i < this.config.bubbles.count; i++) {
             promiseArray.push(this.deleteBubble(i));
         }
 
-        return new Promise(async (resolve) => {
-            return Promise.all(promiseArray)
-        })
+        return await Promise.all(promiseArray);
     }
 }
 

@@ -1,33 +1,35 @@
 import actions from './store/actions';
 import mutations from './store/mutations';
+import getters from './store/getters';
+
+import playground from './Playground.vue'
+
+import config from '../config'
 
 const gameModule = {
     namespaced: true,
     state: {
+        eventNamespace: config.defaultEventNamespace,
         game: {},
         mountedElement: {},
         isPlaying: false,
+        subscribedEvents: {},
+        gameOver: false,
+        paused: false,
+        score: 0,
+        messages: [],
+        cooldowns: {},
     },
     mutations: mutations,
     actions: actions,
-    getters: {
-
-    },
+    getters: getters,
 };
 
-export default (Vue: any, { store }: any) => {
-    // document.addEventListener('CSG.gameOver', (e: any) => {
-    //     console.log('lolka')
-    // });
-    // document.addEventListener('CSG.score', (e:any) => {
-    //     console.log('lolka3')
-    // });
-    // document.addEventListener('CSG.message', (e:any) => {
-    //     console.log('lolka1')
-    // });
-    // document.addEventListener('CSG.CD_altClick', () => {
-    //     console.log('lolka2')
-    // });
+export default (Vue: any, { store, eventNamespace }: any) => {
+    if (eventNamespace) {
+        gameModule.state.eventNamespace = eventNamespace
+    }
 
-    store.registerModule('churn-simulator', gameModule)
+    Vue.component('ChurnSimulator', playground);
+    store.registerModule('churn-simulator', gameModule);
 }

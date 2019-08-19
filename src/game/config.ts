@@ -7,7 +7,7 @@ const config: GameConfig = {
         renewal: 360,
         lastContact: 90,
         ticksPerSecond: 6,
-        ticksToEnd: 720,
+        ticksToEnd: 30,
         hardness: 95, // 1 - hell / 100 your service is just perfect
         clickCD: 2000
     },
@@ -23,7 +23,8 @@ const config: GameConfig = {
             lastContact: [10, 30],
             renewal: [150, 360],
         }
-    }
+    },
+    defaultEventNamespace: 'CSG',
 };
 
 export default config
