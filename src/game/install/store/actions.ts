@@ -46,6 +46,18 @@ export default {
         commit('restartGame')
     },
 
+    pause({ state }: any) {
+        state.isPlaying = false;
+        state.paused = true;
+        state.game.pause();
+    },
+
+    resume({ state }: any) {
+        state.isPlaying = true;
+        state.paused = false;
+        state.game.resume();
+    },
+
     destroy({ state }: any) {
         state.subscribedEvents.forEach((event: any) => {
            event();

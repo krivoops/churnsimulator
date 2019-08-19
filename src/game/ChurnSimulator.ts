@@ -30,6 +30,14 @@ class ChurnSimulator {
         this.init()
     }
 
+    public pause() {
+        this.fragments.Mover.pause();
+    }
+
+    public resume() {
+        this.fragments.Mover.resume();
+    }
+
     private setupView () {
         this.playground.style.position = 'relative';
         // @ts-ignore

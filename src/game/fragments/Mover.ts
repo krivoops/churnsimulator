@@ -18,6 +18,14 @@ class Mover extends GameFragmentClass {
         this.createLooper();
     }
 
+    public pause() {
+        this.looperEnabled = false;
+    }
+
+    public resume() {
+        this.createLooper();
+    }
+
     private initMovement(move = true) {
         this.oneXPixel = this.config.width / this.config.game.renewal;
         this.oneYPixel = this.config.height / this.config.game.lastContact;
