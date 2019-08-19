@@ -31,7 +31,7 @@ import { Action, Getter } from 'vuex-class';
 const gameNamespace = 'churn-simulator';
 
 @Component
-export default class ManageScreen extends Vue {
+export default class GameMessages extends Vue {
     @Action('start', { namespace: gameNamespace }) startGame;
     @Action('restart', { namespace: gameNamespace }) restartGame;
 

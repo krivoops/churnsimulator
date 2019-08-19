@@ -12,7 +12,7 @@ const config: GameConfig = {
         clickCD: 2000
     },
     bubbles: {
-        count: 10, // bubbles count
+        count: 15, // bubbles count
         minSize: 20, // min bubble size
         sizeCoef: 0.35, // just play with it =)
     },
@@ -20,8 +20,8 @@ const config: GameConfig = {
         bubble: {
             paying: [5, 20],
             health: [3, 9],
-            lastContact: [10, 30],
-            renewal: [150, 360],
+            lastContact: [10, 60],
+            renewal: [80, 360],
         }
     },
     defaultEventNamespace: 'CSG',

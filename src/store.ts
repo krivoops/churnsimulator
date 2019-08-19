@@ -1,16 +1,22 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
+import dashboard from './modules/dashboard';
+
 Vue.use(Vuex);
 
-export default new Vuex.Store({
-  state: {
+const store = new Vuex.Store({
+    state: {
 
-  },
-  mutations: {
+    },
+    mutations: {
 
-  },
-  actions: {
+    },
+    actions: {
 
-  },
+    },
 });
+
+dashboard(store);
+
+export default store

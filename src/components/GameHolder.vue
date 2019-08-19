@@ -56,16 +56,6 @@
 
   import ChurnSimulator from '@/game/ChurnSimulator'
 
-  import Firebase from 'firebase'
-  let config = {
-      apiKey: 'AIzaSyBre1jfpBSeaCmcXrw7NfDU-nQJjpUajX8',
-      authDomain: 'project-1004742871477',
-      databaseURL: 'https://churn-simulator.firebaseio.com/'
-  };
-
-  const app = Firebase.initializeApp(config);
-  const db = app.database();
-
   @Component
   export default class Canvas extends Vue {
       message = '';

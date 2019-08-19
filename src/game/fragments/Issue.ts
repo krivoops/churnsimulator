@@ -18,7 +18,7 @@ const issues = [
 
 const addHealth = [
     [`Nice support there`, 5],
-    ['Gtfo', -2],
+    ['Go away', -2],
     ['Okay', 2],
     ['Finally', 1],
     ['Thanks a lot', 4],
